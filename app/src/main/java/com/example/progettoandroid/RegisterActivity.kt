@@ -7,6 +7,7 @@ import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -14,6 +15,8 @@ class RegisterActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register)
+
+        val continuaButton: Button = findViewById(R.id.continua_button)
 
         val loginRegister: TextView = findViewById(R.id.login_register)
         val text: String = "Sei gia registrato? Effettua il login"
@@ -25,6 +28,10 @@ class RegisterActivity: AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        continuaButton.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this@RegisterActivity, Register2Activity::class.java)
+            startActivity(intent)
+        })
 
         ss.setSpan(clickableSpan,32,37,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         loginRegister.text = ss;

@@ -8,28 +8,13 @@
     tools:layout_editor_absoluteY="-84dp">
 
     <EditText
-        android:id="@+id/sesso"
+        android:id="@+id/password_register2"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_marginTop="468dp"
+        android:layout_marginTop="476dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
-        android:hint="sesso"
-        android:inputType="text"
-        android:paddingLeft="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/peso"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="532dp"
-        android:background="@drawable/edit_text_background"
-        android:ems="10"
-        android:hint="peso(Kg)"
+        android:hint="conferma password"
         android:inputType="text"
         android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +44,7 @@
         android:layout_marginTop="204dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
+        android:foregroundTint=""
         android:hint="nome"
         android:inputType="text"
         android:paddingLeft="10dp"
@@ -101,7 +87,7 @@
         android:id="@+id/textView2"
         android:layout_width="298dp"
         android:layout_height="54dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/installer"
         android:text="Registrati"
         android:textSize="50sp"
@@ -119,6 +105,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/continua_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="148dp"
+        android:background="@drawable/button_background"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/impact"
+        android:text="continua"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.911"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
