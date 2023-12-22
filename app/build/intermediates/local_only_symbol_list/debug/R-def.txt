@@ -1,0 +1,35 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable button_background
+drawable edit_text_background
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable running_wallpaper
+font impact
+font installer
+id cognome
+id email
+id email_register
+id imageView
+id log_in_button
+id login_register
+id nome
+id password
+id password_register
+id peso
+id register_button
+id sesso
+id textView2
+layout activity_main
+layout home
+layout login
+layout register
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base.Theme.ProgettoAndroid
+style Theme.ProgettoAndroid
+xml backup_rules
+xml data_extraction_rules

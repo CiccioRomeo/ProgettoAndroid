@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/layout_activity_main.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/layout_register.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/layout/register.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/drawable_button_background.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/drawable/button_background.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/xml_backup_rules.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/layout_login.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/layout/login.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/layout_home.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/layout/home.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/font_installer.ttf.flat",
+        "source": "com.example.progettoandroid.app-main-33:/font/installer.ttf"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/drawable_edit_text_background.xml.flat",
+        "source": "com.example.progettoandroid.app-main-33:/drawable/edit_text_background.xml"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/font_impact.ttf.flat",
+        "source": "com.example.progettoandroid.app-main-33:/font/impact.ttf"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/drawable_running_wallpaper.png.flat",
+        "source": "com.example.progettoandroid.app-main-33:/drawable/running_wallpaper.png"
+    },
+    {
+        "merged": "com.example.progettoandroid.app-merged_res-31:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.progettoandroid.app-main-33:/mipmap-xxhdpi/ic_launcher.webp"
+    }
+]
