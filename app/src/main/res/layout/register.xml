@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="-8dp"
+    tools:layout_editor_absoluteY="-84dp">
+
+    <EditText
+        android:id="@+id/sesso"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="468dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="sesso"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/peso"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="532dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="peso(Kg)"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email_register"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="336dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="e-mail"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nome"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="204dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="nome"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/cognome"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="272dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="cognome"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/password_register"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="404dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="298dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/installer"
+        android:text="Registrati"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/login_register"
+        android:layout_width="244dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="44dp"
+        android:text="Sei gia registrato? Effettua il login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
