@@ -86,7 +86,7 @@
         android:id="@+id/textView2"
         android:layout_width="298dp"
         android:layout_height="54dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/installer"
         android:text="Registrati"
         android:textSize="50sp"
