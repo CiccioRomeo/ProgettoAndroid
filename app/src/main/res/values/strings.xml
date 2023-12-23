@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ProgettoAndroid</string>
     <string name="btn_choose">Choose</string>
+
+
     <string-array name="gender_array">
         <item>seleziona il genere</item>
         <item>maschio</item>

@@ -1,6 +1,7 @@
 package com.example.progettoandroid
 
 import android.content.Intent
+import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -8,15 +9,27 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class RegisterActivity: AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register)
 
+        val nome: EditText = findViewById(R.id.nome)
+        val cognome: EditText = findViewById(R.id.cognome)
+        val email: EditText = findViewById(R.id.email_register)
+        val password: EditText = findViewById(R.id.password_register)
+        val confermaPassword: EditText = findViewById(R.id.conferma_password)
         val continuaButton: Button = findViewById(R.id.continua_button)
+        val sesso: Spinner = findViewById(R.id.gender_spinner)
+        val peso: EditText = findViewById(R.id.peso)
+        val db: MyDBHelper =  MyDBHelper(this);
 
         val loginRegister: TextView = findViewById(R.id.login_register)
         val text: String = "Sei gia registrato? Effettua il login"
@@ -28,14 +41,70 @@ class RegisterActivity: AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        continuaButton.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this@RegisterActivity, Register2Activity::class.java)
-            startActivity(intent)
-        })
 
         ss.setSpan(clickableSpan,32,37,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         loginRegister.text = ss;
 
         loginRegister.movementMethod = LinkMovementMethod.getInstance()
+
+        continuaButton.setOnClickListener{
+            val nomeT: String = nome.text.toString()
+            val cognomeT: String = cognome.text.toString()
+            val emailT: String = email.text.toString()
+            val passwordT : String = password.text.toString()
+            val sessoT: String = sesso.selectedItem.toString()
+            val pesoI : Int = peso.text.toString().toInt()
+            val repasswordT: String = confermaPassword.text.toString()
+            if(nomeT.equals("")||cognomeT.equals("") || emailT.equals("")|| passwordT.equals("")|| repasswordT.equals(""))
+                Toast.makeText(this@RegisterActivity, "Inserisci tutti i campi", Toast.LENGTH_SHORT).show();
+            else{
+                if(passwordT.equals(repasswordT)) {
+                val checkEmail: Boolean? = db.checkEmail(emailT);
+                if(checkEmail == false){
+                    val insert: Boolean? = db.insertData(emailT, passwordT,nomeT,cognomeT,sessoT,pesoI)
+                    if(insert==true){
+                        Toast.makeText(this@RegisterActivity, "Registrato con successo", Toast.LENGTH_SHORT).show();
+                        val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
+                        startActivity(intent)
+                    }else{
+                        Toast.makeText(this@RegisterActivity, "Registratione fallita", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(this@RegisterActivity, "Utente già registato! Effettua il Log In", Toast.LENGTH_SHORT).show();
+                }
+            }else{
+                Toast.makeText(this@RegisterActivity, "La password non combacia", Toast.LENGTH_SHORT).show();
+            }
+            } }
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

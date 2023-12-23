@@ -8,39 +8,65 @@
     tools:layout_editor_absoluteY="-84dp">
 
     <EditText
-        android:id="@+id/password_register2"
+        android:id="@+id/peso"
         android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="476dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="364dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="peso (Kg)"
+        android:inputType="number"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/gender_spinner"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="324dp"
+        android:entries="@array/gender_array"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/conferma_password"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="448dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="conferma password"
         android:inputType="text"
         android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/email_register"
         android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="336dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="284dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="e-mail"
         android:inputType="text"
         android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/nome"
         android:layout_width="300dp"
-        android:layout_height="48dp"
+        android:layout_height="30dp"
         android:layout_marginTop="204dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
@@ -55,22 +81,22 @@
     <EditText
         android:id="@+id/cognome"
         android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="272dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="244dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="cognome"
         android:inputType="text"
         android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/password_register"
         android:layout_width="300dp"
-        android:layout_height="48dp"
+        android:layout_height="30dp"
         android:layout_marginTop="404dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
@@ -78,7 +104,7 @@
         android:inputType="text"
         android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,13 +136,15 @@
         android:id="@+id/continua_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="148dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/impact"
         android:text="continua"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintHorizontal_bias="0.922"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
