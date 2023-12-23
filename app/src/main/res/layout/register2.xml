@@ -30,23 +30,35 @@
         android:inputType="text"
         android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/peso"
-        android:layout_width="298dp"
-        android:layout_height="54dp"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
         android:layout_marginTop="356dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
-        android:hint="peso(Kg)"
+        android:hint="peso (Kg)"
         android:inputType="text"
         android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/gender_spinner"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_background"
+        android:layout_marginTop="220dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
