@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ProgettoAndroid</string>
     <string name="btn_choose">Choose</string>
-
+    <string name="my_maps_api_keys">AIzaSyAwzrO_I8Mphy06mcYaQanGMdQmfLTlibM</string>
 
     <string-array name="gender_array">
         <item>seleziona il genere</item>
@@ -9,4 +9,7 @@
         <item>femmina</item>
         <item>altro</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
