@@ -1,7 +1,6 @@
 package com.example.progettoandroid
 
 import android.content.Intent
-import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -29,7 +28,7 @@ class RegisterActivity: AppCompatActivity() {
         val continuaButton: Button = findViewById(R.id.continua_button)
         val sesso: Spinner = findViewById(R.id.gender_spinner)
         val peso: EditText = findViewById(R.id.peso)
-        val db: MyDBHelper =  MyDBHelper(this);
+        val db =  MyDBHelper(this);
 
         val loginRegister: TextView = findViewById(R.id.login_register)
         val text: String = "Sei gia registrato? Effettua il login"
@@ -52,19 +51,20 @@ class RegisterActivity: AppCompatActivity() {
             val cognomeT: String = cognome.text.toString()
             val emailT: String = email.text.toString()
             val passwordT : String = password.text.toString()
-            val sessoT: String = sesso.selectedItem.toString()
+            //val sessoT: String = sesso.selectedItem.toString()
             val pesoI : Int = peso.text.toString().toInt()
             val repasswordT: String = confermaPassword.text.toString()
-            if(nomeT.equals("")||cognomeT.equals("") || emailT.equals("")|| passwordT.equals("")|| repasswordT.equals(""))
+
+            if(nomeT == "" || cognomeT == "" || emailT == "" || passwordT == "" || repasswordT == "")
                 Toast.makeText(this@RegisterActivity, "Inserisci tutti i campi", Toast.LENGTH_SHORT).show();
             else{
-                if(passwordT.equals(repasswordT)) {
+                if(passwordT == repasswordT) {
                 val checkEmail: Boolean? = db.checkEmail(emailT);
                 if(checkEmail == false){
-                    val insert: Boolean? = db.insertData(emailT, passwordT,nomeT,cognomeT,sessoT,pesoI)
+                    val insert: Boolean? = db.insertData(emailT, passwordT,nomeT,cognomeT,pesoI)
                     if(insert==true){
                         Toast.makeText(this@RegisterActivity, "Registrato con successo", Toast.LENGTH_SHORT).show();
-                        val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
                     }else{
                         Toast.makeText(this@RegisterActivity, "Registratione fallita", Toast.LENGTH_SHORT).show();
@@ -76,7 +76,8 @@ class RegisterActivity: AppCompatActivity() {
             }else{
                 Toast.makeText(this@RegisterActivity, "La password non combacia", Toast.LENGTH_SHORT).show();
             }
-            } }
+            }
+        }
     }
 
 }
