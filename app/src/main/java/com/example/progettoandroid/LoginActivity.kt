@@ -2,7 +2,6 @@ package com.example.progettoandroid
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,24 +13,27 @@ class LoginActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
+        val db =  MyDBHelper(this);
+
+
         val emailLogin: EditText = findViewById(R.id.email_login)
         val passwordLogin: EditText = findViewById(R.id.password_login)
         val loginButton: Button = findViewById(R.id.login_login_button)
-        val DB: MyDBHelper = MyDBHelper(this)
+
+
+
+
+
         loginButton.setOnClickListener {
             val emailT: String = emailLogin.text.toString()
-            val passwordT: String = emailLogin.text.toString()
-            if (emailT.equals("") || passwordT.equals(""))
+            val passwordT: String = passwordLogin.text.toString()
+            if (emailT == "" || passwordT == "")
                 Toast.makeText(this@LoginActivity, "Inserisci tutti i campi", Toast.LENGTH_SHORT)
                     .show();
             else {
-                val checkEmailPass: Boolean? = DB.checkEmailPassword(emailT, passwordT);
+                val checkEmailPass: Boolean? = db.checkEmailPassword(emailT, passwordT);
                 if (checkEmailPass == true) {
-                    Toast.makeText(
-                        this@LoginActivity,
-                        "Registrazione avvenuta con successo",
-                        Toast.LENGTH_SHORT
-                    ).show();
+                    Toast.makeText(this@LoginActivity, "Accesso avvenuto con successo", Toast.LENGTH_SHORT).show();
                     val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                     startActivity(intent)
                 } else {
