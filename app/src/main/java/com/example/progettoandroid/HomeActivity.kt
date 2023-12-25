@@ -127,18 +127,6 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMarkerCl
     }
 
 
-    // Aggiorna il percorso quando si ottiene una nuova posizione
-    private fun updateLocation(location: android.location.Location) {
-        lastLocation = location
-        val currentLatLong = LatLng(location.latitude, location.longitude)
-        placeMarkerOnMap(currentLatLong)
-
-        // Disegna il percorso solo se il tasto play è premuto
-        if (isPlay) {
-            updatePath()
-            myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong, 12f))
-        }
-    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         myMap = googleMap;
@@ -159,10 +147,12 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback,GoogleMap.OnMarkerCl
         fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
 
             if (location != null){
-                updateLocation(location)
                 lastLocation = location
                 val currentLatLong = LatLng(location.latitude, location.longitude)
                 placeMarkerOnMap(currentLatLong)
+                if (isPlay) {
+                    updatePath()
+                }
                 myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLong,12f))
 
             }
