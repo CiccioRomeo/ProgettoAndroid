@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity(){
                 if (checkEmailPass == true) {
                     Toast.makeText(this@LoginActivity, "Accesso avvenuto con successo", Toast.LENGTH_SHORT).show();
                     val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                    intent.putExtra("email", emailT);
                     startActivity(intent)
                 } else {
                     Toast.makeText(this@LoginActivity, "Credenziali non valide", Toast.LENGTH_SHORT).show();

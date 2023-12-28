@@ -47,4 +47,61 @@ class MyDBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db",null,1
             return true;
         return false;
     }
+
+    fun getPeso(email : String?): Int {
+        val myDB: SQLiteDatabase = this.writableDatabase;
+        val cursor: Cursor =
+            myDB.rawQuery("Select peso from utenti where email = ? ", arrayOf(email));
+        if (cursor.moveToFirst()) {
+            val peso: Int = cursor.getInt(0)
+            cursor.close()
+            return peso
+        } else {
+            cursor.close()
+            return -1
+        }
+    }
+    fun getNome(email: String?): String {
+        val myDB: SQLiteDatabase = this.writableDatabase;
+        val cursor: Cursor =
+            myDB.rawQuery("Select nome from utenti where email = ? ", arrayOf(email));
+        if (cursor.moveToFirst()) {
+            val nome: String = cursor.getString(0)
+            cursor.close()
+            return nome
+        } else {
+            cursor.close()
+            return " "
+        }
+    }
+    fun getCognome(email : String?): String{
+        val myDB: SQLiteDatabase = this.writableDatabase;
+        val cursor: Cursor =
+            myDB.rawQuery("Select cognome from utenti where email = ? ", arrayOf(email));
+        if (cursor.moveToFirst()) {
+            val cognome: String = cursor.getString(0)
+            cursor.close()
+            return cognome
+        } else {
+            cursor.close()
+            return " "
+        }
+    }
+
+    fun setNome(email: String?, nuovoNome :String){
+        val myDB: SQLiteDatabase = this.writableDatabase;
+        myDB.rawQuery("Update utenti set nome = ?  where email = ? ", arrayOf(nuovoNome, email));
+
+    }
+    fun setCognome(email: String?, nuovoCognome :String){
+        val myDB: SQLiteDatabase = this.writableDatabase;
+        myDB.rawQuery("Update utenti set cognome = ?  where email = ? ", arrayOf(nuovoCognome , email));
+    }
+
+    fun setPeso(email: String?, nuovoPeso :Int){
+        val myDB: SQLiteDatabase = this.writableDatabase;
+        myDB.rawQuery("Update utenti set peso = ?  where email = ? ", arrayOf("$nuovoPeso" , email));
+    }
+
+
 }

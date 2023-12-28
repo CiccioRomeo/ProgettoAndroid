@@ -39,14 +39,15 @@
         android:id="@+id/loginText"
         android:layout_width="209dp"
         android:layout_height="47dp"
-        android:layout_marginTop="80dp"
         android:fontFamily="@font/installer"
         android:text="Log in"
         android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <Button
         android:id="@+id/login_login_button"

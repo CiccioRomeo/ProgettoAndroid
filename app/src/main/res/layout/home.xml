@@ -7,12 +7,24 @@
     >
 
 
+    <TextView
+        android:id="@+id/contaCal"
+        android:layout_width="122dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/defaultKCal"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="394dp"
-        android:layout_height="504dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="395dp"
+        android:layout_height="518dp"
+        android:layout_marginBottom="88dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -21,8 +33,8 @@
 
     <Chronometer
         android:id="@+id/chronoMterPlay"
-        android:layout_width="207dp"
-        android:layout_height="82dp"
+        android:layout_width="220dp"
+        android:layout_height="100dp"
         android:layout_margin="10dp"
         android:backgroundTint="@color/white"
         android:elevation="10dp"
@@ -31,13 +43,13 @@
         android:paddingRight="15dp"
         android:paddingBottom="10dp"
         android:textAlignment="center"
-        android:textSize="45sp"
+        android:textSize="55sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintVertical_bias="0.152" />
 
     <ImageView
         android:id="@+id/playBtn"
@@ -59,6 +71,54 @@
         app:layout_constraintBottom_toBottomOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_pause_circle_filled_24" />
+
+    <TextView
+        android:id="@+id/contaKm"
+        android:layout_width="122dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/defaultKm"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/homeBtn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974"
+        app:srcCompat="@drawable/baseline_directions_run_24" />
+
+    <ImageView
+        android:id="@+id/statisticBtn"
+        android:layout_width="70sp"
+        android:layout_height="70sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974"
+        app:srcCompat="@drawable/baseline_query_stats_24" />
+
+    <ImageView
+        android:id="@+id/settingsBtn"
+        android:layout_width="70sp"
+        android:layout_height="70sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974"
+        app:srcCompat="@drawable/baseline_manage_accounts_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

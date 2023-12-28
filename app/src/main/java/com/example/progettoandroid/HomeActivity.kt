@@ -1,40 +1,49 @@
 package com.example.progettoandroid
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
 import android.widget.Chronometer
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
+
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
+
 
 class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
 
+
     private lateinit var myMap: GoogleMap
-    private lateinit var locationClient: FusedLocationProviderClient
-    private lateinit var locationManager : LocationManager
+    private lateinit var locationManager: LocationManager
+
     private lateinit var playBtn: ImageView
     private lateinit var pauseBtn: ImageView
     private lateinit var chronometer: Chronometer
+    private lateinit var settings : ImageView
+    private lateinit var statistics : ImageView
+    private lateinit var home : ImageView
+
+
+    private lateinit var Km : TextView
+    private lateinit var cal : TextView
+    private var peso : Int = 0
+    private lateinit var db : MyDBHelper
     var isPlay = false
     var pauseOffSet: Long = 0
-    private lateinit var lastLatLng : LatLng
 
-    companion object {
-        private const val LOCATION_REQUEST_CODE = 1
-    }
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +51,22 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
         val mapFragment: SupportMapFragment =
             supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        var intent : Intent = intent
+        var email : String? = intent.getStringExtra("email")
 
-        locationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        settings =  findViewById(R.id.settingsBtn)
+        statistics = findViewById(R.id.statisticBtn)
+        home = findViewById(R.id.homeBtn)
+
+
+
+        db = MyDBHelper(this);
+        peso = db.getPeso(email)
+        Km = findViewById(R.id.contaKm)
+        cal = findViewById(R.id.contaCal)
+
+
         playBtn = findViewById(R.id.playBtn)
         pauseBtn = findViewById(R.id.pauseBtn)
         chronometer = findViewById(R.id.chronoMterPlay)
@@ -74,50 +97,54 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
                 isPlay = false
                 pauseBtn.setImageResource(R.drawable.baseline_play_circle_24)
                 textMsg("Pausa", this)
+                locationManager.pauseLocationTracking();
             } else {
                 chronometer.base = SystemClock.elapsedRealtime() - pauseOffSet
                 chronometer.start()
                 pauseBtn.setImageResource(R.drawable.baseline_pause_circle_filled_24)
                 textMsg("Hai ripreso la tua corsa", this)
                 isPlay = true
+                locationManager.startLocationTracking();
             }
         }
+        settings.setOnClickListener {
+            val intent = Intent(this@HomeActivity, SettingsActivity::class.java)
+            //intent.putExtra("email", email);
+            startActivity(intent)
+        }
+
+
+
+        /* statistics.setOnClickListener{
+             val intent = Intent(this@HomeActivity, SettingsActivity::class.java)
+             intent.putExtra("email", email);
+             startActivity(intent)
+         }
+
+         */
+
+
     }
 
     fun textMsg(s: String, c: Context) {
         Toast.makeText(c, s, Toast.LENGTH_SHORT).show()
     }
 
+    @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         myMap = googleMap
         myMap.uiSettings.isZoomControlsEnabled = true
-        locationManager =  LocationManager(this,5000L,20.0F)
         setUpMap()
+        locationManager = LocationManager(this, 3000L, 5.0F, myMap,Km,cal,peso)
     }
 
     private fun setUpMap() {
 
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1)
             return
         }
         myMap.isMyLocationEnabled = true
-        locationClient.lastLocation.addOnSuccessListener(this) { location ->
-            if (location != null) {
-                lastLatLng = LatLng(location.latitude, location.longitude)
-                myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, 12f))
-
-            }
-
-        }
-
     }
 }
 
