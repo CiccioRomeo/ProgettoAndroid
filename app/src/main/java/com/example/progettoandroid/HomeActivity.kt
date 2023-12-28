@@ -109,19 +109,19 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
         }
         settings.setOnClickListener {
             val intent = Intent(this@HomeActivity, UserSettingsActivity::class.java)
-            //intent.putExtra("email", email);
+            intent.putExtra("email", email);
             startActivity(intent)
         }
 
 
 
-        /* statistics.setOnClickListener{
-             val intent = Intent(this@HomeActivity, SettingsActivity::class.java)
+        statistics.setOnClickListener{
+             val intent = Intent(this@HomeActivity, StatisticsActivity::class.java)
              intent.putExtra("email", email);
              startActivity(intent)
          }
 
-         */
+
 
 
     }
