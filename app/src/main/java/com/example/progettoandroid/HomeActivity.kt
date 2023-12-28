@@ -108,7 +108,7 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
             }
         }
         settings.setOnClickListener {
-            val intent = Intent(this@HomeActivity, SettingsActivity::class.java)
+            val intent = Intent(this@HomeActivity, UserSettingsActivity::class.java)
             //intent.putExtra("email", email);
             startActivity(intent)
         }

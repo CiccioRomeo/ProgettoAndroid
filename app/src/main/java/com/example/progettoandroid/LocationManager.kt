@@ -22,25 +22,14 @@ import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 
 
-class LocationManager(context: Context, private var timeInterval: Long, private var minimalDistance: Float, myMap : GoogleMap, Km : TextView, cal :TextView, peso : Int) : LocationCallback() {
+class LocationManager(private val context: Context, private var timeInterval: Long, private var minimalDistance: Float, private val myMap : GoogleMap, private var KmBtn : TextView, private var KcalBtn :TextView, private val peso: Int) : LocationCallback() {
 
     private var request: LocationRequest
     var locationClient: FusedLocationProviderClient
-    private var context1 : Context
     private lateinit var polyline : Polyline
-    private var myMap1 : GoogleMap
     private var totalDistance: Double = 0.00;
-    private var KmBtn: TextView
-    private var calBtn: TextView
-    private var pesoKg : Int
-
     private  var  polylinelist : MutableList<Polyline> = arrayListOf()
     init {
-        pesoKg = peso
-        KmBtn = Km
-        calBtn = cal
-        context1 = context
-        myMap1 = myMap
         locationClient = LocationServices.getFusedLocationProviderClient(context)
         request = createRequest()
     }
@@ -67,7 +56,7 @@ class LocationManager(context: Context, private var timeInterval: Long, private 
         val polylineOptions = PolylineOptions()
         polylineOptions.color(Color.CYAN)
         polylineOptions.width(18f)
-        polyline = myMap1.addPolyline(polylineOptions)
+        polyline = myMap.addPolyline(polylineOptions)
         polylinelist.add(polyline)
         locationClient.requestLocationUpdates(request, this, Looper.getMainLooper())
         }
@@ -92,7 +81,7 @@ class LocationManager(context: Context, private var timeInterval: Long, private 
         polylinelist = arrayListOf()
         totalDistance = 0.00;
         KmBtn.text = "0.00 Km"
-        calBtn.text = "0.0 Kcal"
+        KcalBtn.text = "0.0 Kcal"
     }
 
     override fun onLocationResult(location: LocationResult) {
@@ -112,15 +101,15 @@ class LocationManager(context: Context, private var timeInterval: Long, private 
         val points: MutableList<LatLng> = polyline.points
         points.add(lastKnownLatLng)
         polyline.points = points
-        myMap1.animateCamera(CameraUpdateFactory.newLatLngZoom(lastKnownLatLng,16f))
+        myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastKnownLatLng,16f))
         calculateKm()
         calculateCal()
     }
 
     private fun calculateCal() {
         val value : Double = 0.9
-        val cal : Double = (pesoKg*totalDistance*value)
-        calBtn.text =  "%.1f".format(cal) + " Kcal"
+        val cal : Double = (peso*totalDistance*value)
+        KcalBtn.text =  "%.1f".format(cal) + " Kcal"
     }
 
     fun calculateKm() {
