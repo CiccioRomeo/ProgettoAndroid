@@ -14,10 +14,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.os.bundleOf
 
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
@@ -38,6 +41,7 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
     private lateinit var cal : TextView
     private var peso : Int = 0
     private lateinit var db : MyDBHelper
+    private lateinit var dbRun : MyDBHelperRun
     var isPlay = false
     var pauseOffSet: Long = 0
 
@@ -70,6 +74,16 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
         playBtn = findViewById(R.id.playBtn)
         pauseBtn = findViewById(R.id.pauseBtn)
         chronometer = findViewById(R.id.chronoMterPlay)
+
+
+        dbRun = MyDBHelperRun(this)
+
+
+
+
+
+
+
         playBtn.setOnClickListener {
             if (!isPlay) {
                 chronometer.base = SystemClock.elapsedRealtime() - pauseOffSet
@@ -80,6 +94,10 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
                 isPlay = true
                 locationManager.startLocationTracking()
             } else {
+                val formatter = SimpleDateFormat("yyyy-MM-dd")
+                val date = Date()
+                val current = formatter.format(date)
+                dbRun.insertData(email,current, Km.text.toString(),chronometer.text.toString(),cal.text.toString())
                 chronometer.base = SystemClock.elapsedRealtime()
                 pauseOffSet = 0
                 chronometer.stop()
