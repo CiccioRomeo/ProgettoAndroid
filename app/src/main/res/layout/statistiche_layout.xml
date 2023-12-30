@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/statisticBtn_statistics"
@@ -41,14 +41,55 @@
         app:layout_constraintVertical_bias="0.974"
         app:srcCompat="@drawable/baseline_manage_accounts_24" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerViewStatistiche"
-        android:name="com.example.progettoandroid.Statistiche"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <ScrollView
+        android:layout_width="411dp"
+        android:layout_height="643dp"
         app:layout_constraintBottom_toTopOf="@+id/homeBtn_statistics"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+            <TableRow>
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:padding="5dp"
+                    android:text="Data"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="72dp"
+                    android:padding="5dp"
+                    android:text="Distanza"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:text="Tempo"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:padding="5dp"
+                    android:text="Calorie"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

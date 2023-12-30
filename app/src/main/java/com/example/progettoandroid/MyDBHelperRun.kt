@@ -29,32 +29,60 @@ class MyDBHelperRun(context: Context) : SQLiteOpenHelper(context, "Run.db",null,
         myDB.insert("corse", null, contentValues);
     }
 
-    @SuppressLint("Range")
-    fun getRunsByEmail(email: String?): List<Run> {
-        val runs = mutableListOf<Run>()
+
+    fun getDate(email: String?): MutableList<String> {
+        val date: MutableList<String> = mutableListOf()
         val db = this.readableDatabase
-        val cursor: Cursor = db.rawQuery("SELECT * FROM corse WHERE email = ?", arrayOf(email))
+        val cursor: Cursor = db.rawQuery("SELECT data FROM corse WHERE email = ?", arrayOf(email))
         while (cursor.moveToNext()) {
-            val run = Run(
-                cursor.getString(cursor.getColumnIndex("data")),
-                cursor.getString(cursor.getColumnIndex("distanza")),
-                cursor.getString(cursor.getColumnIndex("tempo")),
-                cursor.getString(cursor.getColumnIndex("calorie"))
-            )
-            runs.add(run)
+            val elem : String = cursor.getString(0)
+            date.add(elem)
         }
         cursor.close()
         db.close()
-        return runs
+        return date
     }
 
-    // Metodo che restituisce una lista di liste con i risultati della query precedente
-    fun getRunsListByEmail(email: String?): List<List<String>> {
-        val runs = getRunsByEmail(email)
-        return runs.map {
-            listOf( it.data, it.distanza, it.tempo, it.calorie)
+    fun getDistanze(email: String?): MutableList<String> {
+        val distanze: MutableList<String> = mutableListOf()
+        val db = this.readableDatabase
+        val cursor: Cursor = db.rawQuery("SELECT distanza FROM corse WHERE email = ?", arrayOf(email))
+        while (cursor.moveToNext()) {
+            val elem : String = cursor.getString(0)
+            distanze.add(elem)
         }
+        cursor.close()
+        db.close()
+        return distanze
     }
+
+
+    fun getTempi(email: String?): MutableList<String> {
+        val tempi: MutableList<String> = mutableListOf()
+        val db = this.readableDatabase
+        val cursor: Cursor = db.rawQuery("SELECT tempo FROM corse WHERE email = ?", arrayOf(email))
+        while (cursor.moveToNext()) {
+            val elem: String = cursor.getString(0)
+            tempi.add(elem)
+        }
+        cursor.close()
+        db.close()
+        return tempi
+    }
+
+    fun getCalorie(email: String?): MutableList<String> {
+        val calorieList: MutableList<String> = mutableListOf()
+        val db = this.readableDatabase
+        val cursor: Cursor = db.rawQuery("SELECT calorie FROM corse WHERE email = ?", arrayOf(email))
+        while (cursor.moveToNext()) {
+            val elem: String = cursor.getString(0)
+            calorieList.add(elem)
+        }
+        cursor.close()
+        db.close()
+        return calorieList
+    }
+
 }
 
-data class Run(val data: String, val distanza: String, val tempo: String, val calorie: String)
+

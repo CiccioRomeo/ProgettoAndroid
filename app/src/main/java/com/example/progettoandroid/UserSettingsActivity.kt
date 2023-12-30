@@ -1,6 +1,8 @@
 package com.example.progettoandroid
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Button
@@ -26,8 +28,8 @@ class UserSettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_layout)
 
-        var intent : Intent = intent
-        var email : String? = intent.getStringExtra("email")
+        val sharedPreferences: SharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val email: String? = sharedPreferences.getString("email","")
         db = MyDBHelper(this)
 
         nome = findViewById(R.id.nome_settings)
@@ -51,7 +53,7 @@ class UserSettingsActivity : AppCompatActivity() {
              val nuovoNome: String = nome.text.toString()
              val nuovoCognome: String = cognome.text.toString()
              val nuovoPeso: Int = peso.text.toString().toInt()
-             Toast.makeText(this,"$nuovoNome, $nuovoCognome, $nuovoPeso",Toast.LENGTH_SHORT).show()
+             Toast.makeText(this,"Salvato con successo",Toast.LENGTH_SHORT).show()
              salvaModifiche(email,nuovoNome,nuovoCognome,nuovoPeso)
          }
 
@@ -66,9 +68,28 @@ class UserSettingsActivity : AppCompatActivity() {
         }
 
         statistics.setOnClickListener{
-            val intent = Intent(this@UserSettingsActivity, StatisticsActivity::class.java)
+            val intent = Intent(this@UserSettingsActivity, RunsActivity::class.java)
             startActivity(intent)
         }
+    }
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     private fun setHint(textView: TextView, value :String) {

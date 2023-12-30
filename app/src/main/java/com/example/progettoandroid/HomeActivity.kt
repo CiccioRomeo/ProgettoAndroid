@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.SystemClock
@@ -55,8 +56,8 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
         val mapFragment: SupportMapFragment =
             supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        var intent : Intent = intent
-        var email : String? = intent.getStringExtra("email")
+        val sharedPreferences: SharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val email: String? = sharedPreferences.getString("email","")
 
 
         settings =  findViewById(R.id.settingsBtn)
@@ -94,10 +95,11 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
                 isPlay = true
                 locationManager.startLocationTracking()
             } else {
-                val formatter = SimpleDateFormat("yyyy-MM-dd")
+                val formatter = SimpleDateFormat("yy-MM-dd")
                 val date = Date()
                 val current = formatter.format(date)
                 dbRun.insertData(email,current, Km.text.toString(),chronometer.text.toString(),cal.text.toString())
+                dbRun.close()
                 chronometer.base = SystemClock.elapsedRealtime()
                 pauseOffSet = 0
                 chronometer.stop()
@@ -127,21 +129,32 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
         }
         settings.setOnClickListener {
             val intent = Intent(this@HomeActivity, UserSettingsActivity::class.java)
-            intent.putExtra("email", email);
             startActivity(intent)
         }
-
-
-
         statistics.setOnClickListener{
-             val intent = Intent(this@HomeActivity, StatisticsActivity::class.java)
-             intent.putExtra("email", email);
+             val intent = Intent(this@HomeActivity, RunsActivity::class.java)
              startActivity(intent)
          }
+    }
 
+    override fun onResume() {
+        super.onResume()
+    }
 
+    override fun onRestart() {
+        super.onRestart()
+    }
 
+    override fun onPause() {
+        super.onPause()
+    }
 
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     fun textMsg(s: String, c: Context) {
