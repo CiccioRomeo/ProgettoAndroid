@@ -86,6 +86,7 @@ class LoginActivity : AppCompatActivity(){
     private fun saveEmail(email: String) {
         val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
+        editor.remove("email")
         editor.putString("email", email)
         editor.apply()
     }
