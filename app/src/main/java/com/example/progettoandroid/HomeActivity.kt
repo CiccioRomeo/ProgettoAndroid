@@ -2,9 +2,12 @@ package com.example.progettoandroid
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
@@ -14,10 +17,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.os.bundleOf
+import com.google.android.gms.maps.CameraUpdateFactory
 
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.tasks.Task
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
@@ -38,21 +47,26 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
     private lateinit var cal : TextView
     private var peso : Int = 0
     private lateinit var db : MyDBHelper
+    private lateinit var dbRun : MyDBHelperRun
     var isPlay = false
     var pauseOffSet: Long = 0
 
+    private lateinit  var currentLocation: Location
+    private var currentLatitude: Double  = 0.0
+    private var currentLongitude: Double = 0.0
 
 
+    private  var email : String? = null
 
-
+    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
         val mapFragment: SupportMapFragment =
             supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        var intent : Intent = intent
-        var email : String? = intent.getStringExtra("email")
+        val sharedPreferences: SharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        email = sharedPreferences.getString("email","")
 
 
         settings =  findViewById(R.id.settingsBtn)
@@ -70,6 +84,14 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
         playBtn = findViewById(R.id.playBtn)
         pauseBtn = findViewById(R.id.pauseBtn)
         chronometer = findViewById(R.id.chronoMterPlay)
+
+
+        dbRun = MyDBHelperRun(this)
+
+
+
+
+
         playBtn.setOnClickListener {
             if (!isPlay) {
                 chronometer.base = SystemClock.elapsedRealtime() - pauseOffSet
@@ -79,7 +101,18 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
                 textMsg("La corsa è iniziata", this)
                 isPlay = true
                 locationManager.startLocationTracking()
+                locationManager.locationClient.lastLocation
+                    .addOnSuccessListener { location: Location ->
+                        currentLocation = location // Salva la posizione corrente
+                        currentLatitude = currentLocation.latitude
+                        currentLongitude = currentLocation.longitude
+                    }
             } else {
+                val formatter = SimpleDateFormat("yy-MM-dd")
+                val date = Date()
+                val current = formatter.format(date)
+                dbRun.insertData(email,current, Km.text.toString(),chronometer.text.toString(),cal.text.toString(),currentLatitude,currentLongitude)
+                dbRun.close()
                 chronometer.base = SystemClock.elapsedRealtime()
                 pauseOffSet = 0
                 chronometer.stop()
@@ -108,22 +141,64 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
             }
         }
         settings.setOnClickListener {
-            val intent = Intent(this@HomeActivity, UserSettingsActivity::class.java)
-            //intent.putExtra("email", email);
-            startActivity(intent)
+            if(isPlay) {
+                val mAlertDialog = AlertDialog.Builder(this@HomeActivity)
+                mAlertDialog.setTitle("Attenzione!") //set alertdialog title
+                mAlertDialog.setMessage("Vuoi cancellare la tua corsa") //set alertdialog message
+                mAlertDialog.setPositiveButton("Si") { dialog, id ->
+                    val intent = Intent(this@HomeActivity, UserSettingsActivity::class.java)
+                    startActivity(intent)
+                }
+                mAlertDialog.setNegativeButton("No") { dialog, id ->
+
+                }
+                mAlertDialog.show()
+            }else{
+                val intent = Intent(this@HomeActivity, UserSettingsActivity::class.java)
+                startActivity(intent)
+            }
+
         }
+        statistics.setOnClickListener{
+            if(isPlay) {
+                val mAlertDialog = AlertDialog.Builder(this@HomeActivity)
+                mAlertDialog.setTitle("Attenzione!") //set alertdialog title
+                mAlertDialog.setMessage("Vuoi cancellare la tua corsa") //set alertdialog message
+                mAlertDialog.setPositiveButton("Si") { dialog, id ->
+                    val intent = Intent(this@HomeActivity, RunsActivity::class.java)
+                    startActivity(intent)
+                }
+                mAlertDialog.setNegativeButton("No") { dialog, id ->
 
-
-
-        /* statistics.setOnClickListener{
-             val intent = Intent(this@HomeActivity, SettingsActivity::class.java)
-             intent.putExtra("email", email);
-             startActivity(intent)
+                }
+                mAlertDialog.show()
+            }else{
+                val intent = Intent(this@HomeActivity, RunsActivity::class.java)
+                startActivity(intent)
+            }
          }
+    }
 
-         */
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
 
 
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     fun textMsg(s: String, c: Context) {
@@ -136,6 +211,42 @@ class HomeActivity : AppCompatActivity(),OnMapReadyCallback {
         myMap.uiSettings.isZoomControlsEnabled = true
         setUpMap()
         locationManager = LocationManager(this, 3000L, 5.0F, myMap,Km,cal,peso)
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                1
+            )
+        } else {
+            // Richiedi la posizione corrente solo se hai i permessi
+            locationManager.locationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    location?.let {
+                        currentLocation = location
+                        currentLatitude = currentLocation.latitude
+                        currentLongitude = currentLocation.longitude
+                        myMap.moveCamera(
+                            CameraUpdateFactory.newLatLngZoom(
+                                LatLng(currentLatitude, currentLongitude),
+                                15f
+                            )
+                        )
+                        //textMsg("$currentLatitude-$currentLongitude", this)
+                        dbRun.ultimaCorsaVicina(email,currentLatitude,currentLongitude,this@HomeActivity)
+                    }
+                }
+        }
     }
 
     private fun setUpMap() {

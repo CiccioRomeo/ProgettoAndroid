@@ -90,17 +90,17 @@ class MyDBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db",null,1
 
     fun setNome(email: String?, nuovoNome :String){
         val myDB: SQLiteDatabase = this.writableDatabase;
-        myDB.rawQuery("Update utenti set nome = ?  where email = ? ", arrayOf(nuovoNome, email));
+        myDB.execSQL("Update utenti set nome = ?  where email = ? ", arrayOf(nuovoNome, email));
 
     }
     fun setCognome(email: String?, nuovoCognome :String){
         val myDB: SQLiteDatabase = this.writableDatabase;
-        myDB.rawQuery("Update utenti set cognome = ?  where email = ? ", arrayOf(nuovoCognome , email));
+        myDB.execSQL("Update utenti set cognome = ?  where email = ? ", arrayOf(nuovoCognome , email));
     }
 
     fun setPeso(email: String?, nuovoPeso :Int){
         val myDB: SQLiteDatabase = this.writableDatabase;
-        myDB.rawQuery("Update utenti set peso = ?  where email = ? ", arrayOf("$nuovoPeso" , email));
+        myDB.execSQL("Update utenti set peso = ?  where email = ? ", arrayOf("$nuovoPeso" , email));
     }
 
 

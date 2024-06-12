@@ -26,11 +26,11 @@ class RegisterActivity: AppCompatActivity() {
         val password: EditText = findViewById(R.id.password_register)
         val confermaPassword: EditText = findViewById(R.id.conferma_password)
         val continuaButton: Button = findViewById(R.id.continua_button)
-        val sesso: Spinner = findViewById(R.id.gender_spinner)
         val peso: EditText = findViewById(R.id.peso)
         val db =  MyDBHelper(this);
 
         val loginRegister: TextView = findViewById(R.id.login_register)
+
         val text: String = "Sei gia registrato? Effettua il login"
         val ss: SpannableString = SpannableString(text);
 
@@ -43,7 +43,6 @@ class RegisterActivity: AppCompatActivity() {
 
         ss.setSpan(clickableSpan,32,37,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         loginRegister.text = ss;
-
         loginRegister.movementMethod = LinkMovementMethod.getInstance()
 
         continuaButton.setOnClickListener{
@@ -51,7 +50,6 @@ class RegisterActivity: AppCompatActivity() {
             val cognomeT: String = cognome.text.toString()
             val emailT: String = email.text.toString()
             val passwordT : String = password.text.toString()
-            //val sessoT: String = sesso.selectedItem.toString()
             val pesoI : Int = peso.text.toString().toInt()
             val repasswordT: String = confermaPassword.text.toString()
 
@@ -75,9 +73,28 @@ class RegisterActivity: AppCompatActivity() {
                 }
             }else{
                 Toast.makeText(this@RegisterActivity, "La password non combacia", Toast.LENGTH_SHORT).show();
-            }
+                }
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 }
